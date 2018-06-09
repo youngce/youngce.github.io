@@ -7,6 +7,7 @@ script:
   - hexo g #生成
 after_script:
   - cd ./public
+  - cp ../CNAME .  
   - git init
   - git config user.name "youngce" #修改name
   - git config user.email "youngce0918@gmail.com" #修改email
