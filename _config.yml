@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 馬克楊's Blog
 subtitle:
 description:
 keywords:
-author: John Doe
-language:
+author: Mark Yang
+language: zh-cn
 timezone:
 
 # URL
@@ -80,7 +80,7 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/youngce/youngce.github.io
-
+  branch: master
 # Sass
 node_sass:
   outputStyle: nested
