@@ -14,7 +14,6 @@ timezone:
 # Menu
 menu:
   home: / 
-  archive: /archives
   about: /about
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -78,72 +77,5 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hueman
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: https://github.com/youngce/youngce.github.io
-  branch: master
-# Sass
-node_sass:
-  outputStyle: nested
-  precision: 5
-  sourceComments: false
-
-# Autoprefixer
-autoprefixer:
-  exclude:
-    - '*.min.css'
-  browsers:
-    - 'last 2 versions'
-
-# Lunr
-lunr:
-  field: all
-  fulltext: false
-  path: assets/lunr/
-
-# filter_cleanup
-hfc_useref:
-  enable: true
-  concat: true
-
-hfc_html:
-  enable: true
-  exclude:
-
-hfc_css:
-  enable: true
-  exclude: 
-    - '*.min.css'
-
-hfc_js:
-  enable: true
-  mangle: true
-  exclude: 
-    - '*.min.js'
-
-hfc_img:
-  enable: false
-  interlaced: false
-  multipass: false
-  optimizationLevel: 2
-  pngquant: false
-  progressive: false
-
-hfc_favicons:
-  enable: false
-  src: img/blog-logo.png
-  target: img/
-  icons:
-    android: true
-    appleIcon: true
-    appleStartup: false
-    coast: false
-    favicons: true
-    firefox: false
-    opengraph: false
-    windows: true
-    yandex: false
