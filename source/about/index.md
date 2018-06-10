@@ -8,6 +8,10 @@ layout: about
 ![](https://i.imgur.com/Z65aQU4.jpg)
 統計研究所畢業，畢業後誤打誤撞成為軟體工程師；這幾年專注在大數據及後端架構設計。
 對程式碼有潔癖, 最愛Scala優美的語法，最討厭的語言是Golang...XD.
+
+## [線上CV](https://www.visualcv.com/yangtsechung-yang)
+
+## 時間表
 ### 2018-06
 * 建立部落格
 
