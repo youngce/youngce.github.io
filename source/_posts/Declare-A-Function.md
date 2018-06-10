@@ -4,8 +4,6 @@ date: 2018-06-09 22:26:57
 tags: [scala, fp, function]
 ---
 
-
-
 ## 前言
 ![scala](https://upload.wikimedia.org/wikipedia/en/8/85/Scala_logo.png)
 Scala是具備函數式編程(Functional Programming)特性的程式語言，因此如何使用函數是學習Scala必要的過程，在這個章節中我們將會了解
