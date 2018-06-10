@@ -6,7 +6,7 @@ tags: [scala]
 
 好幾年前錄制的Scala環境安裝影片，若覺得有什麼不足的地方，再麻煩留言跟我說.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Mztt44WJvEM" frameborder="0" allow="autoplay; encrypted-media" align="center" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Mztt44WJvEM" frameborder="0" allow="autoplay; encrypted-media" align="middle" allowfullscreen></iframe>
 
 
 
