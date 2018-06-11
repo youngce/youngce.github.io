@@ -81,6 +81,8 @@ theme: hueman
 
 robotstxt:
   useragent: "*"
+  allow:
+    - /
   disallow:
   sitemap: /sitemap.xml
 
