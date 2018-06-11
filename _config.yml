@@ -84,7 +84,6 @@ plugins:
 robotstxt:
   useragent: "*"
   disallow:
-    - /
   sitemap: /sitemap.xml
 
 sitemap:
