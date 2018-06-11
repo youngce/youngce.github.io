@@ -1,7 +1,9 @@
 ---
 title: Scala中的函數式編程-模式匹配1(Pattern Matching)
+tags:
+  - scala
+abbrlink: 964a19b7
 date: 2018-06-11 00:21:46
-tags: [scala]
 ---
 ![Pattern Matching](https://s3-eu-west-1.amazonaws.com/www.voxxed/2017/09/PatternMatching.jpg)
 Pattern Matching算是Scala中的一大特色, 比起以往使用的if else或是switch-case有著更強大且優美的能力，

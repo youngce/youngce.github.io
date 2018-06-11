@@ -1,8 +1,13 @@
 ---
 title: 淺談Akka(1)- Akka與Actor Model
+tags:
+  - scala
+  - akka
+  - actor
+categories:
+  - Akka
+abbrlink: ff8df8fd
 date: 2018-06-10 09:28:48
-tags: [scala,akka,actor]
-categories: [Akka]
 ---
 # 前言
 Akka是實現Actor Model的一個框架，同時支援Java及Scala，它天生的高效，容錯，分散等特性，目前Java生態系中也有許多開源專案使用Akka，例如: Apache Spark, Apache Flink等。

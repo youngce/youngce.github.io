@@ -1,7 +1,11 @@
 ---
 title: Scala - 函數宣告
+tags:
+  - scala
+  - fp
+  - function
+abbrlink: 519c28ac
 date: 2018-06-09 22:26:57
-tags: [scala, fp, function]
 ---
 
 ## 前言
