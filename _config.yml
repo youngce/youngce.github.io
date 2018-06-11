@@ -79,18 +79,6 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: hueman
 
-generator_amp:
-  templateDir:  amp-template
-  assetDistDir: amp-dist
-  logo:
-    path:   sample/sample-logo.png
-    width:  600
-    height: 60
-  substituteTitleImage:
-    path:   sample/sample-substituteTitleImage.png
-    width:  1024
-    height: 800
-  warningLog: true   # To display warning, please set true.
 
 sitemap:
   path: sitemap.xml
