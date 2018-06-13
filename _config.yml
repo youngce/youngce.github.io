@@ -93,5 +93,11 @@ robotstxt:
 sitemap:
   path: sitemap.xml
 
+breadcrumb:
+  display: true
+  homepage:
+    title: Home
+    url: https://blog.markyang.pro # should be absolute address
+
 
 

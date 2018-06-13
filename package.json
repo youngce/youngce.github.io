@@ -29,5 +29,8 @@
     "moment": "^2.22.2",
     "node-sass": "^4.9.0",
     "object-assign": "^4.1.1"
+  },
+  "devDependencies": {
+    "hexo-breadcrumb": "^1.0.2"
   }
 }

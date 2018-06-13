@@ -4,8 +4,6 @@ tags:
   - scala
   - akka
   - actor
-categories:
-  - Akka
 abbrlink: ff8df8fd
 date: 2018-06-10 09:28:48
 ---

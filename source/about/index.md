@@ -18,7 +18,7 @@ layout: about
 * 建立部落格
 
 ### 2017-10
-* 學習Goalng
+* 學習Golang
 * 寫LeetCode
 
 ### 2016-09
