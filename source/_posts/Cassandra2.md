@@ -42,8 +42,9 @@ cqlsh # 在container中執行
 
 ### cqlsh 的增刪改查(CURD)
 在使用cqlsh之前有幾個Cassandra的名詞要稍微介紹一下，下面的表是跟傳統的關聯式資料庫名詞做對應，可以讓大家更好理解，
+
 |Cassandra|關聯式資料庫|
-|----|----|
+|---|---|
 |cql|sql|
 |Keyspace|Database|
 |Table|Table|
