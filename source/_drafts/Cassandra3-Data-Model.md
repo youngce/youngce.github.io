@@ -11,14 +11,19 @@ tags:
 
 想要做出好的設計，那就必須先了解Cassandra是如何設定它的資料模型。
 
-下圖為Cassandra資料模型的一個範例
-![https://blog.dbi-services.com/apache-cassandra-overview/](http://blog.dbi-services.com/wp-insides/uploads/sites/2/2016/10/Cassandra_dataModel.png)
+圖1為Cassandra資料模型的一個範例
+![圖1](http://blog.dbi-services.com/wp-insides/uploads/sites/2/2016/10/Cassandra_dataModel.png)
 
 接下來，我們將分三個部份由下而上來說明Cassandra的資料模型
 1. Row
-1. Table/Column Familiy(CF)
-1. KeySpace
-
-
+1. Table/Column Family(CF)
+1. Keyspace
 
 ## Row結構
+
+![圖2](https://pandaforme.gitbooks.io/introduction-to-cassandra/content/Screen%20Shot%202016-02-24%20at%2011.46.09.png)
+圖2是一筆Cassadnra Row結構，我們可以發現一筆Row可以分成兩個部份:Row Key以及其他的Key-Value欄位
+
+## 參考資料
+* [Apache Cassandra overview](https://blog.dbi-services.com/apache-cassandra-overview/)
+* [Understand the Cassandra data model](https://pandaforme.gitbooks.io/introduction-to-cassandra/content/understand_the_cassandra_data_model.html)
