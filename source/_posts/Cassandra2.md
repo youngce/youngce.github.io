@@ -47,7 +47,7 @@ cqlsh # 在container中執行
 |---|---|
 |cql|sql|
 |Keyspace|Database|
-|Table|Table|
+|Table|Table/Column Family(CF)|
 
 所以接下來的流程我們將會先建立一個名為KeySpace，再建立該KeySpace中的一張名為`users`的Table.
 
