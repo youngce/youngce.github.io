@@ -50,7 +50,9 @@ CREATE TABLE employees (
     PRIMARY KEY (department, first_name, age)
 );
 ```
-這樣以多個欄位建立主鍵的方式在Cassandra中被稱為組合鍵(Composite Key)或複合鍵(Compound Key),
+
+這樣以多個欄位建立主鍵的方式在Cassandra中被稱為組合鍵(Composite Key)或複合鍵(Compound Key)。
+
 一個複合鍵包含了一個分區鍵(Partition Key)以及一組叢集欄位(Cluster Columns): 分區鍵負責決定該筆Row屬於哪一個分區並要儲存在Cassandra集群中的哪一個節點，而叢集欄位則負責分區內的資料排序方式; 這樣設計的好處擁有相同分區鍵的資料會集中在同一個節點，當對叢集欄位做排序或是分組的操作時(你無法對一般欄位做任何的排序，分組以及條件查詢)，也只是在同一個節點運算，並不需要跨節點運算, 所以分區鍵必須要好好設計，避免資料過份集中在某一個節點上。 接著我們來看看以下幾個查詢範例，其中也包含錯誤的查詢語法，
 ```sql
 -- 寫入資料
