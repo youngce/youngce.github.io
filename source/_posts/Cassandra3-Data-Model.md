@@ -1,9 +1,13 @@
 ---
+layout: drafts
 title: Cassandra(3)- 資料模型
-abbrlink: bd21a762
 tags:
- - cassandra
+  - cassandra
+abbrlink: bd21a762
+date: 2018-07-20 00:54:37
 ---
+
+
 還記得在[上一篇文章](90eadf28.html)中，我們嘗試使用`SELECT * FROM users WHERE last_name='yang';`卻得到以下的錯誤訊息
 >InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
 
@@ -95,6 +99,54 @@ SELECT * FROM employees WHERE department='RD' AND salary>0 ;
 ![圖4](https://i.imgur.com/mlCVSC1.png)
 
 > 若主鍵只包含單一欄位，該欄位則為分區值且無叢集欄位，而CQL Data Modeler不支援無叢集欄位的Schema
+
+> Cassandra支持多個欄位為分區鍵，可以在建表時使用`PRIMARY KEY ((department, first_name), age)`即表示department, first_name為分區鍵
+
+### 欄位
+欄位是Cassandra中最小單位，除了欄位名稱及值外，在定義欄位時還需要記錄值的類型，可以到[Apache Cassandra官方網頁](http://cassandra.apache.org/doc/latest/cql/types.html)或是[DataStax](https://docs.datastax.com/en/dse/6.0/cql/cql/cql_reference/refDataTypes.html)查詢目前支持的資料類型，大部份類型都與關聯式資料庫相似，但在Cassandra又比傳統關聯式資料庫多了一些類型，像是:
+* [集合類型](http://cassandra.apache.org/doc/latest/cql/types.html#collections): 可以細分為Map，Set以及List三種集合類型
+* [自定義類型](http://cassandra.apache.org/doc/latest/cql/types.html#user-defined-types): 你可以使用CQL語法 `CREATE TYPE your_type_name(...)` 建立自己的資料類型； 由於Cassandra並不支持`JOIN`, 因此你也可以考慮使用自定義類型包裝成一個巢狀的資料結構
+
+但除了這些外，每個欄位還有兩種非常重要的屬性: 時間標記及存活時間(TTL，Time to live)
+#### 時間標記
+每次寫入資料到Cassandra資料庫時，每個欄位的更新時間都會成為該欄位的時間標記，當同一欄位在更新時間發生衝突，通常會以最新的更新操作為主; 舉例來說，為了系統的高可用性，我們通常會將資料分散在不同的Cassandra節點上，若其中一台節點損壞系統仍可正常運作，但當這台損壞的節點重新啟動，資料必定與其他節點不一致，所以Cassandra內部將會以擁有最新的時間標記的更新操作來維持資料的一致性。
+> Cassandra集群中每台節點的機器時間非常重要，若節間點的機器時間不一致，可能會使資料不一致或是資料遺失，建議使用網路校時以及使用UTC時區
+
+我們可以使用內建的`WRITETIME()`函數查看該欄位的時間標記，但有一點要注意，主鍵或集群欄位不能使用 `WRITETIME()`查看時間標記的
+
+```sql
+-- OK
+SELECT last_name, WRITETIME(last_name)  FROM employees ;
+-- Fail
+SELECT department, WRITETIME(department)  FROM employees ;
+```
+#### 存活時間(TTL, Time to live)
+Cassandra支持資料的存活時間，也就是說超過了指定時間該資料會自動被刪除，但Cassandra更有彈性的是它可以為每個欄位單獨設定TTL，另外可以使用`TTL()`函數查看剩餘時間, 與`WRITETIME()`函數相同，`TTL()`僅作用於一般欄位，對於主鍵或集群欄位均不能使用；來看看一下的語法，我們試著查看所有last_name欄位的剩餘時間，
+
+```sql
+SELECT first_name, last_name, ttl(last_name) FROM employees WHERE department='HR' AND first_name='tina' AND age=21;
+```
+從結果可以發現`ttl(last_name)`的值均為null, 表示該欄位資料永久保留，接下來加上TTL設定看看
+
+```sql
+-- 將tina的last_name改為test ttl, 並只保留30秒
+UPDATE employees USING TTL 30 SET last_name = 'test ttl' FROM employees WHERE department='HR' AND first_name='tina' AND age=21;
+
+-- 查詢tina的欄位變化
+SELECT first_name, last_name, ttl(last_name) FROM employees WHERE department='HR' AND first_name='tina' AND age=21;
+```
+當你重複查詢tina的欄位變化時，會發現`ttl(last_name)`不再是null, 而是一個數字並不斷的減少，當減少至null的`last_name`也同時變成了null，表示這次更新的資料保留了30秒就被清除了。
+
+既然`TTL()`函數不能使用在主鍵及集群欄位上，那我們又該如何做Row的TTL呢？比較簡單的方法就是在INSERT時就加入TTL，試著執行以下語法
+
+```sql
+-- 寫入資料 jimmy
+INSERT INTO employees (department , first_name , age , last_name , salary ) 
+        VALUES ( 'RD', 'mark',  30, 'yang', 10000);
+-- 查詢jimmy的欄位變化
+SELECT first_name, last_name, ttl(last_name) FROM employees WHERE department='HR' AND first_name='jimmy' AND age=35;
+```
+重複查詢jimmy欄位變化時，除了`ttl(last_name)`一樣的不斷地減少外，當減少至null時，整個Row結果都查詢不到，表示這筆資料已經被清除了.
 
 
 
